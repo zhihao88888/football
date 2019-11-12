@@ -17,6 +17,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import t.z.h.domain.JCData;
 import t.z.h.entity.JCDataEntity;
@@ -135,7 +136,7 @@ public class AnalyzeServiceImpl implements AnalyzeService {
 
 	/**
 	 * @param isResultOfAll @Title: getVDD @Description: TODO @param: @param
-	 * list @return: void @throws
+	 *                      list @return: void @throws
 	 */
 	private void getVDD(List<JCDataEntity> list, boolean isResultOfAll) {
 		int victory = 0;
@@ -143,13 +144,14 @@ public class AnalyzeServiceImpl implements AnalyzeService {
 		int defeat = 0;
 		for (JCDataEntity jcd : list) {
 			String score = jcd.getScore();
-			if (score == null)
+			if (StringUtils.isEmpty(score))
 				continue;
 			System.out.println(jcd.getType() + "-----" + jcd.getHomeField() + score + jcd.getVisitingField() + "\n"
 					+ format(jcd.getType().length()) + " | 0胜平负赔" + jcd.getVictoryOdds() + "," + jcd.getDrawOdds() + ","
 					+ jcd.getDefeatOdds() + "\n" + format(jcd.getType().length()) + " |" + jcd.getLetBallNum() + "胜平负赔"
 					+ jcd.getLVictoryOdds() + "," + jcd.getLDrawOdds() + "," + jcd.getLDefeatOdds() + "\n"
-					+ format(jcd.getType().length()) + " | 0比赛时间" + jcd.getGameTime());
+					+ format(jcd.getType().length()) + " | 0比赛时间" + jcd.getGameTime() + "\n" + "   | 主客红牌数"
+					+ (jcd.gethRedCard()==null?"---":jcd.gethRedCard()) + "---" + (jcd.getvRedCard()==null?"---":jcd.getvRedCard()));
 			String home = score.substring(0, 1).toString();
 			String visit = score.substring(2, score.length()).toString();
 			if (Integer.valueOf(home).intValue() > Integer.valueOf(visit).intValue()) {

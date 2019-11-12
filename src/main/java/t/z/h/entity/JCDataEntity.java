@@ -94,7 +94,15 @@ public class JCDataEntity implements Serializable{
 	    //备注
 	    @Column(name="NOTES", length=225)
 	    private String     notes        ;
+	    
+	    //主队红牌数
+	    @Column(name="H_RED_CARD", length=225)
+	    private String     hRedCard        ;
 
+	    
+	    //客队红牌数
+	    @Column(name="V_RED_CARD", length=225)
+	    private String     vRedCard        ;
 		/**  
 		 * @Title:  getId
 		 * @Description: please write your description
@@ -400,21 +408,34 @@ public class JCDataEntity implements Serializable{
 		public void setNotes(String notes) {
 			this.notes = notes;
 		}
+		
+		public String gethRedCard() {
+			return hRedCard;
+		}
 
-		/**   
-		 * <p>Title: toString</p>   
-		 * <p>Description: </p>   
-		 * @return   
-		 * @see java.lang.Object#toString()   
-		 */
+		public void sethRedCard(String hRedCard) {
+			this.hRedCard = hRedCard;
+		}
+
+		public String getvRedCard() {
+			return vRedCard;
+		}
+
+		public void setvRedCard(String vRedCard) {
+			this.vRedCard = vRedCard;
+		}
+
 		@Override
 		public String toString() {
 			return "JCDataEntity [id=" + id + ", type=" + type + ", homeField=" + homeField + ", visitingField="
 					+ visitingField + ", victoryOdds=" + victoryOdds + ", drawOdds=" + drawOdds + ", defeatOdds="
 					+ defeatOdds + ", letBallNum=" + letBallNum + ", LVictoryOdds=" + LVictoryOdds + ", LDrawOdds="
 					+ LDrawOdds + ", LDefeatOdds=" + LDefeatOdds + ", result=" + result + ", LResult=" + LResult
-					+ ", score=" + score + ", goalNum=" + goalNum + ", gameTime=" + gameTime + ", notes=" + notes + "]";
+					+ ", score=" + score + ", goalNum=" + goalNum + ", gameTime=" + gameTime + ", notes=" + notes
+					+ ", hRedCard=" + hRedCard + ", vRedCard=" + vRedCard + "]";
 		}
+
+		
 	    
 	    
 }
