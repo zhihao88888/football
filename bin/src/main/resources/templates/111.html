@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>测试</title> 
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<ul class="list-group">
+  <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
+  <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li>
+  <li class="list-group-item list-group-item-warning">Porta ac consectetur ac</li>
+  <li class="list-group-item list-group-item-danger">Vestibulum at eros</li>
+</ul>
+<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-success">Dapibus ac facilisis in</a>
+  <a href="#" class="list-group-item list-group-item-info">Cras sit amet nibh libero</a>
+  <a href="#" class="list-group-item list-group-item-warning">Porta ac consectetur ac</a>
+  <a href="#" class="list-group-item list-group-item-danger">Vestibulum at eros</a>
+</div>
+ 
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Panel heading</div>
+
+  <!-- Table -->
+  <table class="table">
+    ...
+  </table>
+</div>
+<div class="list-group" style="text-align: right;">
+    <div class="btn-group btn-group-lg" role="group">
+        <button style="margin-right: 40px;" type="button" class="btn btn-default">点击测试</button>
+    </div>
+    
+</div>
+
+<div class="divXml">
+    
+</div>
+
+
+
+<script>  
+
+$(document).ready(function(){              
+    
+    $("button").click(function(){
+        $.get("./111", function(result){
+        	    //console.log(result)
+        	    var xmlDoc1 = result;
+//             var xmlDoc1 = $('.divXml').html(result);//读取到xml文件中的数据 
+//             console.log(xmlDoc1);
+                  $.ajax({
+                  type:"POST",
+                  url:"http://localhost:7801/hip/stock/outbound/sync",
+                  data:xmlDoc1,
+                  //async: false,//1、同步问题，试过不行
+                  dataType:"xml",
+                  //contentType:"charset=UTF-8",//2、加入该代码，直接转换utf-8不行
+                  //processData:false,//3、这种网上看到的方式还是不行
+                  success:function(data){
+                      alert(data);
+                  }
+              })
+         });
+     });   
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

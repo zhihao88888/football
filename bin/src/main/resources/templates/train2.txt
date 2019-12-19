@@ -13,5 +13,3 @@ Indoor Rainy Sad Dry
 Indoor Rainy Sad Humid
 Indoor Cloudy Sad Humid
 Indoor Cloudy Sad Humid
-Unknown Sunny Happy 
-Unknown Cloudy Sad 

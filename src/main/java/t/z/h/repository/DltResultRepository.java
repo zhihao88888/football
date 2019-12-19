@@ -91,6 +91,12 @@ public interface DltResultRepository extends CrudRepository<DltResultEntity, Int
 	@Query(value="SELECT count(*) FROM dlt_result d WHERE d.issue <= ?1",nativeQuery = true)
 	long countByIssue(String issue);
 
-
-
-}
+	/**
+	 * @param issue
+	 * @return double
+	 * @throws
+	 */
+	@Query(value="SELECT FORMAT( SUM(d.q1+d.q2+d.q3+d.q4+d.q5) / 5, 2 ) FROM dlt_result d WHERE d.issue = ?1",nativeQuery = true)
+	double findExpectation(String issue); 
+	
+} 

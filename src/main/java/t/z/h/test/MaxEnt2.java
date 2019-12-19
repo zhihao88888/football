@@ -1,6 +1,9 @@
 package t.z.h.test;
 
 import javafx.util.Pair;
+import t.z.h.repository.DltRepository;
+import t.z.h.service.AnalyzeService;
+import t.z.h.utils.SpringUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,7 +15,7 @@ import java.util.*;
  * 最大熵的简明实现，提供训练与预测接口，训练算法采用GIS训练算法
  * @author hankcs
  */
-public class MaxEnt
+public class MaxEnt2
 {
     /**
      * 样本数据集
@@ -41,8 +44,9 @@ public class MaxEnt
 
     public static void main(String[] args) throws IOException
     {
+    	
         String path = "src\\main\\resources\\templates\\train.txt";
-        MaxEnt maxEnt = new MaxEnt();
+        MaxEnt2 maxEnt = new MaxEnt2();
         maxEnt.loadData(path);
         maxEnt.train(200);
         List<String> fieldList = new ArrayList<String>();
@@ -69,7 +73,8 @@ public class MaxEnt
         String line = br.readLine();
         while (line != null)
         {
-            String[] segs = line.split("\\s");
+//        	String[] segs = line.split("	");
+        	String[] segs = line.split("\\s");
             String label = segs[0];
             List<String> fieldList = new ArrayList<String>();
             for (int i = 1; i < segs.length; ++i)
@@ -93,6 +98,7 @@ public class MaxEnt
             if (labels.indexOf(label) == -1) labels.add(label);
             line = br.readLine();
         }
+        br.close();
     }
 
     /**

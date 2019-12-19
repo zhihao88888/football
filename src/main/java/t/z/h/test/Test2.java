@@ -24,7 +24,7 @@ import t.z.h.service.RedisService;
 * @version        
 */
 @RestController
-public class TEST2 {
+public class Test2 {
     @Autowired
     private RedisService redisService ;
 

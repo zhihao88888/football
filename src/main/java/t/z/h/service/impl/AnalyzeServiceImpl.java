@@ -101,11 +101,21 @@ public class AnalyzeServiceImpl implements AnalyzeService {
 		String addDefeatOdds = "";
 		String subtractDefeatOdds = "";
 		while (!(str = reader.readLine()).equals("")) {
+			if(str.equals("exit")) {
+				System.out.println("bye");
+				System.exit(0);
+			}
+			String[] tokenizer= {};
 			boolean matches = str.matches("^[\\u4e00-\\u9fa5]*,\\d*.\\d*,\\d*.\\d*,\\d*.\\d*$");
-			if (!matches)
+			boolean matches2 = str.matches("^[\\u4e00-\\u9fa5]*\\d*.\\d*\\d*.\\d*\\d*.\\d*$");
+			if (matches) {
+				tokenizer = str.split(",");
+			}else if(matches2){
+				tokenizer = new String[]{str.substring(0, str.length()-12),str.substring(str.length()-12, str.length()-8),
+						str.substring(str.length()-8, str.length()-4),str.substring(str.length()-4, str.length())};
+			}else {
 				return null;
-			// string分析器
-			String[] tokenizer = str.split(",");
+			}
 			for (int i = 0; i < tokenizer.length; i++) {
 				if (i == (tokenizer.length - 1) && tokenizer.length > 2) {
 					jc.setType(tokenizer[0]);
@@ -119,7 +129,7 @@ public class AnalyzeServiceImpl implements AnalyzeService {
 			subtractVictoryOdds = victoryOdds.subtract(common).toString();
 
 			BigDecimal drawOdds = new BigDecimal(jc.getDrawOdds());
-			addDrawOdds = drawOdds.add(common).toString().toString();
+			addDrawOdds = drawOdds.add(common).toString();
 			subtractDrawOdds = drawOdds.subtract(common).toString();
 
 			BigDecimal defeatOdds = new BigDecimal(jc.getDefeatOdds());
@@ -150,7 +160,8 @@ public class AnalyzeServiceImpl implements AnalyzeService {
 					+ format(jcd.getType().length()) + " | 0胜平负赔" + jcd.getVictoryOdds() + "," + jcd.getDrawOdds() + ","
 					+ jcd.getDefeatOdds() + "\n" + format(jcd.getType().length()) + " |" + jcd.getLetBallNum() + "胜平负赔"
 					+ jcd.getLVictoryOdds() + "," + jcd.getLDrawOdds() + "," + jcd.getLDefeatOdds() + "\n"
-					+ format(jcd.getType().length()) + " | 0比赛时间" + jcd.getGameTime() + "\n" + "   | 主客红牌数"
+					+ format(jcd.getType().length()) + " | *比赛时间" + jcd.getGameTime() + "\n" 
+					+ format(jcd.getType().length()) + " | *主客红牌数"
 					+ (jcd.gethRedCard()==null?"---":jcd.gethRedCard()) + "---" + (jcd.getvRedCard()==null?"---":jcd.getvRedCard()));
 			String home = score.substring(0, 1).toString();
 			String visit = score.substring(2, score.length()).toString();
