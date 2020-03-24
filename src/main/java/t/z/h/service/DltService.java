@@ -8,6 +8,8 @@
 */ 
 package t.z.h.service;
 
+import java.util.List;
+
 /**      
 * projectName:jc_analyze   
 * className：DltService   
@@ -46,4 +48,9 @@ public interface DltService {
 	 * @throws   
 	 */
 	String setResult(String dlt);
+
+	List<String> getIssueData();
+
+	List<Double> getExpectationValue();
+	
 }

@@ -97,6 +97,9 @@ public interface DltResultRepository extends CrudRepository<DltResultEntity, Int
 	 * @throws
 	 */
 	@Query(value="SELECT FORMAT( SUM(d.q1+d.q2+d.q3+d.q4+d.q5) / 5, 2 ) FROM dlt_result d WHERE d.issue = ?1",nativeQuery = true)
-	double findExpectation(String issue); 
+	double findExpectation(String issue);
+
+	@Query(value="select (d.q1+d.q2+d.q3+d.q4+d.q5)/5 FROM dlt_result d order by d.issue asc",nativeQuery = true)
+	List<Double> findExpectationValue(); 
 	
 } 

@@ -22,7 +22,7 @@ public class Test11 {
 
 		for (;;) {
 			int total = getTotal();
-			if (total < 100 || total > 120) {
+			if (total < 65 || total > 70) {
 				continue;
 			} else {
 				if (repository.contains(temporary.toString())) {

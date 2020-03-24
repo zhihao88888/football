@@ -626,4 +626,14 @@ public class DltServiceImpl implements DltService {
 		}
 	}
 
+	@Override
+	public List<String> getIssueData() {
+		return dltRepository.findIssueData();
+	}
+
+	@Override
+	public List<Double> getExpectationValue() {
+		return dltResultRepository.findExpectationValue();
+	}
+
 }

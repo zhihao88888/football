@@ -8,6 +8,8 @@
 */ 
 package t.z.h.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -65,6 +67,9 @@ public interface DltRepository extends CrudRepository<DltEntity, Integer> {
 	 */
 	@Query(value="select * from dlt d where d.issue =?1-1",nativeQuery = true)
 	DltEntity findByQ1OfUpIssue(String issue);
+
+	@Query(value="select issue from dlt order by issue asc",nativeQuery = true)
+	List<String> findIssueData();
 
 
 }
