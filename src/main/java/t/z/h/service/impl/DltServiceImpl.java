@@ -1,10 +1,10 @@
-/** 
-* <p>Title: DltServiceImpl.java</p>  
-* <p>Description: </p>  
-* <p>Copyright: Copyright (c) 2018</p>  
+/**
+* <p>Title: DltServiceImpl.java</p>
+* <p>Description: </p>
+* <p>Copyright: Copyright (c) 2018</p>
 * @author tianzhihao
-* @date 2018年8月30日  
-* @version 1.0  
+* @date 2018年8月30日
+* @version 1.0
 */
 package t.z.h.service.impl;
 
@@ -37,7 +37,7 @@ import t.z.h.service.DltService;
 /**
  * projectName:jc_analyze className：DltServiceImpl description:
  * creator:tianzhihao date：2018年8月30日 下午2:21:46
- * 
+ *
  * @version
  */
 @Component
@@ -67,7 +67,7 @@ public class DltServiceImpl implements DltService {
 	 * <p>
 	 * Description:
 	 * </p>
-	 * 
+	 *
 	 * @param dlt
 	 * @return
 	 * @see t.z.h.service.DltService#getDlt(java.lang.String)
@@ -551,7 +551,7 @@ public class DltServiceImpl implements DltService {
 	 * <p>
 	 * Description:
 	 * </p>
-	 * 
+	 *
 	 * @param dlt
 	 * @return
 	 * @see t.z.h.service.DltService#setDlt(java.lang.String)
@@ -592,7 +592,7 @@ public class DltServiceImpl implements DltService {
 	 * <p>
 	 * Description:
 	 * </p>
-	 * 
+	 *
 	 * @param dlt
 	 * @return
 	 * @see t.z.h.service.DltService#setResult(java.lang.String)

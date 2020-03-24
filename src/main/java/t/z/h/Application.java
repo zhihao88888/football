@@ -47,9 +47,7 @@ public class Application extends SpringBootServletInitializer {
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				getAnalyzeService().handleData(reader);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (DataAccessResourceFailureException e) {
+		} catch (IOException | DataAccessResourceFailureException e) {
 			e.printStackTrace();
 		} finally {
 			System.out.print("长时间未使用，连接已关闭");
@@ -57,13 +55,11 @@ public class Application extends SpringBootServletInitializer {
 	}
 
 	private static AnalyzeService getAnalyzeService() {
-		AnalyzeService bean = SpringUtils.getBean(AnalyzeService.class);
-		return bean;
+		return SpringUtils.getBean(AnalyzeService.class);
 	}
 
 	private static DltService getDltService() {
-		DltService bean = SpringUtils.getBean(DltService.class);
-		return bean;
+		return SpringUtils.getBean(DltService.class);
 	}
 
 }
