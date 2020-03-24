@@ -41,12 +41,16 @@ public class Application extends SpringBootServletInitializer {
 			getDltService().getDlt();
 			long endTime = System.currentTimeMillis();
 			System.out.println("程序运行时间：" + (endTime - startTime) + "ms");
+			// browse
+			Runtime.getRuntime().exec(
+                    "cmd /c start http://localhost:8888/dlt/echarts");
 			// jc
 			while (true) {
 				System.out.println("请输入赛别以及胜平负赔率用,隔开:\n");
 				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 				getAnalyzeService().handleData(reader);
 			}
+
 		} catch (IOException | DataAccessResourceFailureException e) {
 			e.printStackTrace();
 		} finally {
