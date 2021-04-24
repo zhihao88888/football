@@ -16,18 +16,25 @@ public class Test11 {
 	static List<String> repository = new ArrayList<>();
 	static List<Integer> sum = new ArrayList<>();
 	static ArrayList<Integer> temporary = new ArrayList<>();
+	static List<String> collect = new ArrayList<>();
 
 	public static void main(String[] args) {
 		boolean flag = false;
-
+		int num = 0;
 		for (;;) {
 			int total = getTotal();
-			if (total < 65 || total > 70) {
+			if (total < 60 || total > 75) {
 				continue;
 			} else {
 				if (repository.contains(temporary.toString())) {
-					flag = true;
+//					flag = true;
+					if(!collect.contains(temporary.toString())) {
+						collect.add(temporary.toString());
+					}
 				} else {
+					++ num;
+					if (num > 600)
+						break;
 					repository.add(temporary.toString());
 					for (Integer element : temporary) {
 						sum.add(element);
@@ -40,6 +47,10 @@ public class Test11 {
 		}
 		for (int i = 0; i < repository.size(); i++) {
 			System.out.println(i + 1 + " " + repository.get(i));
+		}
+		System.out.println("---------------------------------");
+		for (int i = 0; i < collect.size(); i++) {
+			System.out.println("SPECIAL:"+(i + 1) + " " + collect.get(i));
 		}
 		System.out.println("---------------------------------");
 		Object[] array = sum.toArray();
@@ -60,11 +71,11 @@ public class Test11 {
 	private static int getTotal() {
 		temporary.removeAll(temporary);
 		int nextInt = 0;
-//		Random random = new Random();
+		Random random = new Random();
 		for (;;) {
 //			int nextInt2 = generateRandom(2);
-//			int nextInt2 = random.nextInt(36);
-			int nextInt2 = getRandomOfBound(35);
+			int nextInt2 = random.nextInt(36);
+//			int nextInt2 = getRandomOfBound(35);
 			if (!temporary.contains(nextInt2) && nextInt2 != 0) {
 				temporary.add(nextInt2);
 				nextInt += nextInt2;

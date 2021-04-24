@@ -85,7 +85,7 @@ public class DltServiceImpl implements DltService {
 		DltResultEntity result = dltResultRepository.findByIssue(issue);
 		String expect = getExpectDlt(result, last);
 		getSameTrendDlt(sameTrend);
-		getBigAndSmall(60);
+		getBigAndSmall(30);
 		return expect;
 	}
 

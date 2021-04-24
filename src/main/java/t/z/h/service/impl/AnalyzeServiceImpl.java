@@ -89,7 +89,7 @@ public class AnalyzeServiceImpl implements AnalyzeService {
      */
     @Override
     public ArrayList<String> handleData(BufferedReader reader) throws IOException {
-        BigDecimal common = new BigDecimal("0.1");
+        BigDecimal common = new BigDecimal("0.05");
         JCData jc = new JCData();
         String str = "";
         String addVictoryOdds = "";
