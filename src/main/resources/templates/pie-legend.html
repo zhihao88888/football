@@ -1,0 +1,142 @@
+<!--
+    THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=pie-legend
+-->
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon"/>
+
+    <link rel='stylesheet prefetch' href='/static/css/foundation-icons.css'>
+    <link rel='stylesheet prefetch' href='/static/images/fi-list.svg'>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body style="height: 100%; margin: 0">
+<div id="container" style="height: 100%"></div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<!-- Uncomment this line if you want to dataTool extension
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
+-->
+<!-- Uncomment this line if you want to use gl extension
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+-->
+<!-- Uncomment this line if you want to echarts-stat extension
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+-->
+<!-- Uncomment this line if you want to use map
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/map/js/china.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/map/js/world.js"></script>
+-->
+<!-- Uncomment these two lines if you want to use bmap extension
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/bmap.min.js"></script>
+-->
+
+<script type="text/javascript">
+    const dom = document.getElementById("container");
+    const myChart = echarts.init(dom);
+    const app = {};
+
+    let option;
+
+
+    const data = genData();
+
+    option = {
+        title: {
+            text: '期望值数量统计',
+            subtext: '16,000,000',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        legend: {
+            type: 'scroll',
+            orient: 'vertical',
+            right: 10,
+            top: 20,
+            bottom: 20,
+            data: data.legendData,
+
+            selected: data.selected
+        },
+        series: [
+            {
+                name: '期望值',
+                type: 'pie',
+                radius: '55%',
+                center: ['40%', '50%'],
+                data: data.seriesData,
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+
+
+
+    function genData() {
+        const nameList = JSON.parse(dltPieData());
+        const legendData = [];
+        const seriesData = [];
+        for (let i = 0; i < nameList.length; i++) {
+            legendData.push(nameList[i].name+'');
+            seriesData.push({
+                name: nameList[i].name+'',
+                value: nameList[i].value
+            });
+        }
+
+        return {
+            legendData: legendData,
+            seriesData: seriesData
+        };
+
+        function makeWord(max, min) {
+            const nameLen = Math.ceil(Math.random() * max + min);
+            const name = [];
+            for (let i = 0; i < nameLen; i++) {
+                name.push(nameList[Math.round(Math.random() * nameList.length - 1)]);
+            }
+            return name.join('');
+        }
+    }
+    function dltPieData(){
+        let xmlHttp;
+        let array;
+        if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlHttp=new XMLHttpRequest();
+        }
+        else
+        {// code for IE6, IE5
+            xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlHttp.onreadystatechange=function()
+        {
+            if (xmlHttp.readyState===4 && xmlHttp.status===200)
+            {
+                array = xmlHttp.responseText
+            }
+        }
+        xmlHttp.open("GET","/dlt/pieData",false);
+        xmlHttp.send();
+        return array;
+    }
+
+    if (option && typeof option === 'object') {
+        myChart.setOption(option);
+    }
+
+</script>
+</body>
+</html>

@@ -10,6 +10,7 @@ package t.z.h.repository;
 
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -68,8 +69,8 @@ public interface DltRepository extends CrudRepository<DltEntity, Integer> {
 	@Query(value="select * from dlt d where d.issue =?1-1",nativeQuery = true)
 	DltEntity findByQ1OfUpIssue(String issue);
 
-	@Query(value="select issue from dlt order by issue asc",nativeQuery = true)
-	List<String> findIssueData();
+	@Query(value="select t.issue,(d.q1+d.q2+d.q3+d.q4+d.q5)/5 expectation from dlt t left join dlt_result d on t.issue=d.issue order by t.issue asc",nativeQuery = true)
+	List<JSONObject> findIssueData();
 
 
 }

@@ -22,6 +22,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.sql.DataSource;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.collections.Bag;
 import org.apache.commons.collections.bag.HashBag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,10 +68,6 @@ public class DltServiceImpl implements DltService {
 	 * <p>
 	 * Description:
 	 * </p>
-	 *
-	 * @param dlt
-	 * @return
-	 * @see t.z.h.service.DltService#getDlt(java.lang.String)
 	 */
 	@Override
 	public String getDlt() {
@@ -627,13 +624,18 @@ public class DltServiceImpl implements DltService {
 	}
 
 	@Override
-	public List<String> getIssueData() {
+	public List<JSONObject> getIssueData() {
 		return dltRepository.findIssueData();
 	}
 
 	@Override
 	public List<Double> getExpectationValue() {
 		return dltResultRepository.findExpectationValue();
+	}
+
+	@Override
+	public List<JSONObject> getPieData() {
+		return dltResultRepository.findPieData();
 	}
 
 }

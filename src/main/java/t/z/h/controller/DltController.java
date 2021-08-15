@@ -10,6 +10,7 @@ package t.z.h.controller;
 
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,9 +55,14 @@ public class DltController {
 		return "/echarts.html";
 	}
 
+	@RequestMapping("/pie")
+	public String pie() {
+		return "/pie-legend.html";
+	}
+
 	@RequestMapping("/issueData")
 	@ResponseBody
-	public List<String> issueData() {
+	public List<JSONObject> issueData() {
 		return dltService.getIssueData();
 	}
 	
@@ -64,6 +70,12 @@ public class DltController {
 	@ResponseBody
 	public List<Double> expectationValue() {
 		return dltService.getExpectationValue();
+	}
+
+	@RequestMapping("/pieData")
+	@ResponseBody
+	public List<JSONObject> pieData() {
+		return dltService.getPieData();
 	}
 	
 }

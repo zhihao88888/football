@@ -53,8 +53,6 @@ public class Application extends SpringBootServletInitializer {
 
 		} catch (IOException | DataAccessResourceFailureException e) {
 			e.printStackTrace();
-		} finally {
-			System.out.print("长时间未使用，连接已关闭");
 		}
 	}
 

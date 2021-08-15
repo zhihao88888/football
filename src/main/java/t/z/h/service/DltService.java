@@ -8,6 +8,8 @@
 */ 
 package t.z.h.service;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.List;
 
 /**      
@@ -49,8 +51,9 @@ public interface DltService {
 	 */
 	String setResult(String dlt);
 
-	List<String> getIssueData();
+	List<JSONObject> getIssueData();
 
 	List<Double> getExpectationValue();
-	
+
+    List<JSONObject> getPieData();
 }

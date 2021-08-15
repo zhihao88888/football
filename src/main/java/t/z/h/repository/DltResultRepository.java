@@ -10,6 +10,7 @@ package t.z.h.repository;
 
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -100,6 +101,16 @@ public interface DltResultRepository extends CrudRepository<DltResultEntity, Int
 	double findExpectation(String issue);
 
 	@Query(value="select (d.q1+d.q2+d.q3+d.q4+d.q5)/5 FROM dlt_result d order by d.issue asc",nativeQuery = true)
-	List<Double> findExpectationValue(); 
-	
-} 
+	List<Double> findExpectationValue();
+
+	@Query(value="SELECT" +
+			" expectation AS `name`," +
+			" COUNT( expectation ) AS `value` " +
+			"FROM" +
+			" ( SELECT ( q1 + q2 + q3 + q4 + q5 ) / 5 AS expectation FROM dlt_result ) a " +
+			"GROUP BY" +
+			" expectation " +
+			"ORDER BY" +
+			" `value` DESC",nativeQuery = true)
+	List<JSONObject> findPieData();
+}
